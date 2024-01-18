@@ -1,0 +1,77 @@
+﻿<Page x:Class="VScoutDataCollector.Views.ScheduleView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:VScoutDataCollector.Views"
+      mc:Ignorable="d"
+      d:DesignHeight="650" d:DesignWidth="1300"
+      Title="Schedule">
+    <StackPanel Orientation="Horizontal">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0,0,0">
+            <DataGrid ItemsSource="{Binding Schedule}" AutoGenerateColumns="False" MaxHeight="650" CanUserAddRows="False" IsReadOnly="True" RowHeight="50" FontSize="25">
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridCell">
+                        <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Match" Binding="{Binding MatchNumber}"/>
+                    <DataGridTextColumn Header="Red 1" Binding="{Binding Red1TeamNumber}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
+                                <Setter Property="Background" Value="{Binding Red1BackColor}"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Red 2" Binding="{Binding Red2TeamNumber}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
+                                <Setter Property="Background" Value="{Binding Red2BackColor}"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Red 3" Binding="{Binding Red3TeamNumber}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
+                                <Setter Property="Background" Value="{Binding Red3BackColor}"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Blue 1" Binding="{Binding Blue1TeamNumber}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
+                                <Setter Property="Background" Value="{Binding Blue1BackColor}"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Blue 2" Binding="{Binding Blue2TeamNumber}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
+                                <Setter Property="Background" Value="{Binding Blue2BackColor}"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Blue 3" Binding="{Binding Blue3TeamNumber}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
+                                <Setter Property="Background" Value="{Binding Blue3BackColor}"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <StackPanel Margin="100,0,0,0">
+            <TextBlock Text="{Binding Station}" FontSize="25" Style="{StaticResource FormLabel}"/>
+            <TextBlock Text="{Binding Status}" FontSize="25" Style="{StaticResource FormLabel}"/>
+            <Button Content="Export" HorizontalAlignment="Right" Margin="0,0,0,15" MinWidth="75" MinHeight="60" Click="OnExportClick" FontSize="20" Style="{StaticResource HeaderButton}"/>
+        </StackPanel>
+    </StackPanel>
+</Page>

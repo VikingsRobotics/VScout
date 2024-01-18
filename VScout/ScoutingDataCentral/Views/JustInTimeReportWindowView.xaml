@@ -1,0 +1,71 @@
+﻿<Window x:Class="ScoutingDataCentral.Views.JustInTimeReportWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScoutingDataCentral.Views"
+        xmlns:vm="clr-namespace:ScoutingDataCentral.ViewModels"
+        mc:Ignorable="d"
+        Title="JustInTimeReportWindowView" Height="725" Width="1025">
+    <StackPanel Orientation="Horizontal">
+        <StackPanel VerticalAlignment="Stretch" Margin="10,30,0,0">
+            <TextBlock Text="{Binding Message}" />
+            <DataGrid ItemsSource="{Binding Schedule}" IsReadOnly="True" AutoGenerateColumns="False" Height="625" CanUserAddRows="False" >
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseUp" Handler="DataGridRow_MouseClick"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Match" Binding="{Binding MatchNumber}"/>
+                    <DataGridTextColumn Header="Red 1" Binding="{Binding Red1TeamNumber}"/>
+                    <DataGridTextColumn Header="Red 2" Binding="{Binding Red2TeamNumber}"/>
+                    <DataGridTextColumn Header="Red 3" Binding="{Binding Red3TeamNumber}"/>
+                    <DataGridTextColumn Header="Blue 1" Binding="{Binding Blue1TeamNumber}"/>
+                    <DataGridTextColumn Header="Blue 2" Binding="{Binding Blue2TeamNumber}"/>
+                    <DataGridTextColumn Header="Blue 3" Binding="{Binding Blue3TeamNumber}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <StackPanel x:Name="Rectangles" Margin="20,20,0,0">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding ScheduleWindowRound, StringFormat=Schedule Window Round Start: {0}}"/>
+                <Button VerticalAlignment="Top" HorizontalAlignment="Right" MinWidth="50" Content="Print" Click="OnPrintClick" Margin="50,0,0,0" />
+            </StackPanel>
+            <ItemsControl ItemsSource="{Binding JitRedTeamTiles}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="3"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type vm:JustInTimeTeamRectangleViewModel2022}">
+                        <Border BorderThickness="2" Margin="5" CornerRadius="10">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="Red"/>
+                            </Border.BorderBrush>
+                            <local:JustInTimeTeamRectangleView/>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <ItemsControl ItemsSource="{Binding JitBlueTeamTiles}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="3"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type vm:JustInTimeTeamRectangleViewModel2022}">
+                        <Border BorderThickness="2" Margin="5" CornerRadius="10">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="Blue"/>
+                            </Border.BorderBrush>
+                            <local:JustInTimeTeamRectangleView/>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </StackPanel>
+</Window>

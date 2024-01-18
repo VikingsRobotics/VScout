@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadyScheduleSummary", "ReadyScheduleSummary\ReadyScheduleSummary.csproj", "{5710B89F-82E1-4410-B94C-C6E068B10E00}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5710B89F-82E1-4410-B94C-C6E068B10E00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5710B89F-82E1-4410-B94C-C6E068B10E00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5710B89F-82E1-4410-B94C-C6E068B10E00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5710B89F-82E1-4410-B94C-C6E068B10E00}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5AC19B37-10E0-492C-939F-BF27A9293DA9}
+	EndGlobalSection
+EndGlobal

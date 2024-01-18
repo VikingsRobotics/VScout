@@ -1,0 +1,195 @@
+﻿<Page x:Class="VScoutDataCollector.Views.ScoutInputView2022"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:VScoutDataCollector.Views"
+      mc:Ignorable="d"
+      d:DesignHeight="615" d:DesignWidth="1200"
+      Title="ScoutInputView2022">
+
+    <StackPanel Orientation="Horizontal">
+        <StackPanel Margin="10">
+            <DockPanel LastChildFill="False">
+                <TextBlock Text="Team: " FontSize="25" Style="{StaticResource FormLabel}"/>
+                <TextBlock Text="{Binding TeamNumber}" FontSize="25" Style="{StaticResource FormLabel}"/>
+
+                <TextBlock Text=", Round: " FontSize="25" Style="{StaticResource FormLabel}"/>
+                <TextBlock Text="{Binding RoundNumber}" FontSize="25" Style="{StaticResource FormLabel}"/>
+
+                <Button Click="OnCancelClick" Margin="10,0,0,0" MinWidth="50" DockPanel.Dock="Right" Style="{StaticResource HeaderButton}">Cancel</Button>
+                <Button Click="OnSaveClick" MinWidth="50" DockPanel.Dock="Right" Style="{StaticResource HeaderButton}">Save</Button>
+            </DockPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <GroupBox VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                    <GroupBox.BorderBrush>
+                        <SolidColorBrush Color="Black"/>
+                    </GroupBox.BorderBrush>
+                    <GroupBox.Header>
+                        <TextBlock Text="Autonomous" FontSize="18" Style="{StaticResource FormLabel}"/>
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <CheckBox Margin="5,5,0,0" IsChecked="{Binding Moved}" Content="Moved" Foreground="{StaticResource LightFontColor}">
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            </CheckBox.LayoutTransform>
+                        </CheckBox>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <StackPanel>
+                                <TextBlock Text="Low Goal" FontSize="25" HorizontalAlignment="Center" Style="{StaticResource FormLabel}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Click="OnBottomPortAutoMinusClick" Margin="5" MinWidth="55" MinHeight="50" FontSize="40" Style="{StaticResource CounterButton}">
+                                        <TextBlock Text="-" Margin="0,-6,0,0"/>
+                                    </Button>
+                                    <Button Click="OnBottomPortAutoPlusClick" Margin="5" MinWidth="55" MinHeight="50" FontSize="40" Style="{StaticResource CounterButton}">
+                                        <TextBlock Text="+" Margin="0,-6,0,0"/>
+                                    </Button>
+                                </StackPanel>
+                                <TextBlock Text="{Binding LowGoalAutonomous}" HorizontalAlignment="Center" FontSize="25" Style="{StaticResource FormLabel}"/>
+                            </StackPanel>
+
+                            <StackPanel Margin="30,0,0,0">
+                                <TextBlock Text="High Goal" FontSize="25" HorizontalAlignment="Center" Style="{StaticResource FormLabel}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Click="OnHighGoalAutoMinusClick" Margin="5" MinWidth="55" MinHeight="50" FontSize="40" Style="{StaticResource CounterButton}">
+                                        <TextBlock Text="-" Margin="0,-6,0,0"/>
+                                    </Button>
+                                    <Button Click="OnHighGoalAutoPlusClick" Margin="5" MinWidth="55" MinHeight="50" FontSize="40" Style="{StaticResource CounterButton}">
+                                        <TextBlock Text="+" Margin="0,-6,0,0"/>
+                                    </Button>
+                                </StackPanel>
+                                <TextBlock Text="{Binding HighGoalAutonomous}" HorizontalAlignment="Center" FontSize="25" Style="{StaticResource FormLabel}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Margin="30,5,0,0" HorizontalAlignment="Left">
+                    <GroupBox.BorderBrush>
+                        <SolidColorBrush Color="Black"/>
+                    </GroupBox.BorderBrush>
+                    <GroupBox.Header>
+                        <TextBlock Text="Comments" FontSize="18" Style="{StaticResource FormLabel}"/>
+                    </GroupBox.Header>
+
+                    <TextBox Text="{Binding Comments}" MinHeight="120" MinWidth="500" SpellCheck.IsEnabled="True" TextWrapping="Wrap"
+                             AcceptsReturn="True" AcceptsTab="True" FontSize="18" Background="{StaticResource DarkBackground}" Foreground="{StaticResource LightFontColor}"/>
+                </GroupBox>
+            </StackPanel>
+            <GroupBox Margin="0,15,0,0" HorizontalAlignment="Stretch" Padding="15">
+                <GroupBox.BorderBrush>
+                    <SolidColorBrush Color="Black"/>
+                </GroupBox.BorderBrush>
+                <GroupBox.Header>
+                    <TextBlock Text="TeleOp" FontSize="18" Style="{StaticResource FormLabel}"/>
+                </GroupBox.Header>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <GroupBox Margin="5,5" HorizontalAlignment="Left" Padding="15">
+                            <GroupBox.BorderBrush>
+                                <SolidColorBrush Color="Black"/>
+                            </GroupBox.BorderBrush>
+                            <GroupBox.Header>
+                                <TextBlock Text="Hub" FontSize="18" Style="{StaticResource FormLabel}"/>
+                            </GroupBox.Header>
+
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <TextBlock Text="Low Goal" FontSize="25" HorizontalAlignment="Center" Style="{StaticResource FormLabel}"/>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button Click="OnLowGoalMinusClick" Margin="5" MinWidth="55" MinHeight="50" FontSize="40" Style="{StaticResource CounterButton}">
+                                            <TextBlock Text="-" Margin="0,-6,0,0"/>
+                                        </Button>
+                                        <Button Click="OnLowGoalPlusClick" Margin="5" MinWidth="55" MinHeight="50" FontSize="40" Style="{StaticResource CounterButton}">
+                                            <TextBlock Text="+" Margin="0,-6,0,0"/>
+                                        </Button>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding LowGoal}" HorizontalAlignment="Center" FontSize="25" Style="{StaticResource FormLabel}"/>
+                                </StackPanel>
+
+                                <StackPanel Margin="15,0,0,0">
+                                    <TextBlock Text="High Goal" FontSize="25" HorizontalAlignment="Center" Style="{StaticResource FormLabel}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Click="OnHighGoalMinusClick" Margin="5" MinWidth="55" MinHeight="50" FontSize="40" Style="{StaticResource CounterButton}">
+                                            <TextBlock Text="-" Margin="0,-6,0,0"/>
+                                        </Button>
+                                        <Button Click="OnHighGoalPlusClick" Margin="5" MinWidth="55" MinHeight="50" FontSize="40" Style="{StaticResource CounterButton}">
+                                            <TextBlock Text="+" Margin="0,-6,0,0"/>
+                                        </Button>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding HighGoal}" HorizontalAlignment="Center" FontSize="25" Style="{StaticResource FormLabel}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                    <StackPanel Margin="30,15,15,15">
+                        <GroupBox Margin="5,5" Padding="10">
+                            <GroupBox.BorderBrush>
+                                <SolidColorBrush Color="Black"/>
+                            </GroupBox.BorderBrush>
+                            <GroupBox.Header>
+                                <TextBlock Text="End Game" FontSize="18" Style="{StaticResource FormLabel}"/>
+                            </GroupBox.Header>
+
+                            <StackPanel>
+                                <CheckBox Margin="5,5,0,0" IsChecked="{Binding HighBar}" Content="High Bar" Foreground="{StaticResource LightFontColor}">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="2" ScaleY="2"/>
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <CheckBox Margin="5,5,0,0" IsChecked="{Binding ThirdBar}" Content="3rd Bar" Foreground="{StaticResource LightFontColor}">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="2" ScaleY="2"/>
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <CheckBox Margin="5,5,0,0" IsChecked="{Binding SecondBar}" Content="2nd Bar" Foreground="{StaticResource LightFontColor}">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="2" ScaleY="2"/>
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <CheckBox Margin="5,5,0,0" IsChecked="{Binding LowBar}" Content="Low Bar" Foreground="{StaticResource LightFontColor}">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="2" ScaleY="2"/>
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+
+        </StackPanel>
+        <StackPanel>
+            <Image Source="{Binding ImagePath}" Margin="25,5,0,0" HorizontalAlignment="Left" MaxHeight="200" MaxWidth="200" />
+            <StackPanel Margin="15,0,0,0">
+                <TextBlock Text="Team Info" FontSize="25" Style="{StaticResource FormLabel}"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Number:" FontSize="20" Style="{StaticResource FormLabel}"/>
+                    <TextBlock Text="{Binding TeamNumber}" Margin="5,0,0,0" FontSize="20" Style="{StaticResource FormLabel}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Name:" FontSize="20" Style="{StaticResource FormLabel}"/>
+                    <TextBlock Text="{Binding Name}" Margin="5,0,0,0" FontSize="20" Style="{StaticResource FormLabel}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="School Name:" FontSize="20" Style="{StaticResource FormLabel}"/>
+                    <TextBlock Text="{Binding SchoolName}" Margin="5,0,0,0" FontSize="20" Style="{StaticResource FormLabel}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="City:" FontSize="20" Style="{StaticResource FormLabel}"/>
+                    <TextBlock Text="{Binding City}" Margin="5,0,0,0" FontSize="20" Style="{StaticResource FormLabel}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="State:" FontSize="20" Style="{StaticResource FormLabel}"/>
+                    <TextBlock Text="{Binding State}" Margin="5,0,0,0" FontSize="20" Style="{StaticResource FormLabel}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Rookie Year:" FontSize="20" Style="{StaticResource FormLabel}"/>
+                    <TextBlock Text="{Binding RookieYear}" Margin="5,0,0,0" FontSize="20" Style="{StaticResource FormLabel}"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Page>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:VScoutCentral.ViewModels"
+             xmlns:views="clr-namespace:VScoutCentral.Views"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="VScoutCentral.Views.JustInTimeReportView"
+             Title="JustInTimeReportView"
+             x:DataType="viewmodels:JustInTimeReportViewModel">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior
+            EventName="Appearing"
+            Command="{Binding AppearingCommand}" />
+        <toolkit:EventToCommandBehavior
+            EventName="Disappearing"
+            Command="{Binding DisappearingCommand}" />
+    </ContentPage.Behaviors>
+    <ScrollView Orientation="Vertical">
+        <ScrollView Orientation="Horizontal">
+            <VerticalStackLayout>
+                <HorizontalStackLayout>
+                    <Button Text="Save" Clicked="OnSavedClicked" HorizontalOptions="Start" WidthRequest="100"/>
+                    <Label Text="{Binding ScheduleWindowRound, StringFormat='JIT report ready after round: {0}'}" Margin="10,10,0,0" />
+                </HorizontalStackLayout>
+                <VerticalStackLayout x:Name="VerticalStackLayout">
+                    <Label Text="{Binding MatchNumber, StringFormat='Match: {0}'}" FontSize="25" />
+                    <CollectionView ItemsSource="{Binding JitRedTeamTiles}" ItemsLayout="HorizontalList">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="{x:Type viewmodels:JustInTimeRectangeViewModel}">
+                                <Border StrokeThickness="2" Stroke="DarkRed" Margin="3">
+                                    <views:JustInTimeRectangeView />
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <CollectionView ItemsSource="{Binding JitBlueTeamTiles}" ItemsLayout="HorizontalList" Margin="0,3,0,0">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="{x:Type viewmodels:JustInTimeRectangeViewModel}">
+                                <Border StrokeThickness="2" Stroke="DarkBlue" Margin="3">
+                                    <views:JustInTimeRectangeView />
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ScrollView>
+</ContentPage>

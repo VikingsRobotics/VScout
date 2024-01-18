@@ -1,0 +1,27 @@
+﻿<Window x:Class="ScoutingDataCentral.Views.TeamsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ScoutingDataCentral.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TeamsView">
+
+    <StackPanel>
+        <TextBlock Text="Teams" FontSize="15" Margin="15"/>
+        <DataGrid ItemsSource="{Binding Teams}" IsReadOnly="True" AutoGenerateColumns="False" Height="425" CanUserAddRows="False" Margin="15">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Number" Binding="{Binding Number}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Rank" Binding="{Binding Rank}"/>
+                <DataGridTextColumn Header="Opr" Binding="{Binding Opr}"/>
+                <DataGridTextColumn Header="Average Power Cell Points" Binding="{Binding AveragePowerCellPoints}"/>
+                <DataGridTextColumn Header="Rotational Control Count" Binding="{Binding RotationalControlCount}"/>
+                <DataGridTextColumn Header="Positional Control Count" Binding="{Binding PositionalControlCount}"/>
+                <DataGridTextColumn Header="Hang Count" Binding="{Binding HangCount}"/>
+                <DataGridTextColumn Header="Park Count" Binding="{Binding ParkCount}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</Window>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:VScoutCentral.ViewModels"
+             x:Class="VScoutCentral.Views.ConfigurationView"
+             Title="ConfigurationView"
+             x:DataType="viewmodels:ConfigurationViewModel">
+    <VerticalStackLayout Spacing="25" Padding="30,0" VerticalOptions="Center">
+        <Button Text="Download Schedule" Command="{Binding DownloadScheduleCommand}" />
+        <Button Text="Refresh Blue Alliance Stats" Command="{Binding RefreshBlueAlianceStatsCommand}" />
+        <Button Text="Save Schedule" Command="{Binding SaveScheduleCommand}" />
+        <Button Text="Save Teams" Command="{Binding SaveTeamsCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

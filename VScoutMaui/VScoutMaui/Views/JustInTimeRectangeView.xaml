@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:VScoutCentral.ViewModels"
+             x:Class="VScoutCentral.Views.JustInTimeRectangeView"
+             x:DataType="viewmodels:JustInTimeRectangeViewModel"
+             HeightRequest="400"
+             WidthRequest="300">
+    <VerticalStackLayout Padding="3">
+        <Label Text="{Binding TeamNumber, StringFormat='Team: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="20" />
+        <Label Text="{Binding Station, StringFormat='Station: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Label Text="{Binding Rank, StringFormat='Rank: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Label Text="{Binding RoundsPlayed, StringFormat='Rounds Played: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Label Text="{Binding AverageHighCones, StringFormat='Avg High Cones: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Label Text="{Binding AverageMiddleCones, StringFormat='Avg Mid Cones: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Label Text="{Binding AverageLowCones, StringFormat='Avg Low Cones: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Label Text="{Binding AverageHighCubes, StringFormat='Avg High Cubes: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Label Text="{Binding AverageMiddleCubes, StringFormat='Avg Mid Cubes: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Label Text="{Binding AverageLowCubes, StringFormat='Avg Low Cubes: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Label Text="{Binding Comments, StringFormat='Comments: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="WordWrap" />
+    </VerticalStackLayout>
+</ContentView>

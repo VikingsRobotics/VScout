@@ -1,0 +1,30 @@
+﻿<Page x:Class="ScoutingDataCentral.Views.ImportScoutReportView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ScoutingDataCentral.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ImportScoutReportView">
+
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Button Click="OnImportButtonClick" Content="Import" MinWidth="50" Margin="0,0,0,10" HorizontalAlignment="Right"/>
+        <DataGrid ItemsSource="{Binding Schedule}" AutoGenerateColumns="False" MaxHeight="250" CanUserAddRows="False">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridCell">
+                    <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Match" Binding="{Binding MatchNumber}"/>
+                <DataGridTextColumn Header="Red 1" Binding="{Binding Red1TeamNumber}"/>
+                <DataGridTextColumn Header="Red 2" Binding="{Binding Red2TeamNumber}"/>
+                <DataGridTextColumn Header="Red 3" Binding="{Binding Red3TeamNumber}"/>
+                <DataGridTextColumn Header="Blue 1" Binding="{Binding Blue1TeamNumber}"/>
+                <DataGridTextColumn Header="Blue 2" Binding="{Binding Blue2TeamNumber}"/>
+                <DataGridTextColumn Header="Blue 3" Binding="{Binding Blue3TeamNumber}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</Page>

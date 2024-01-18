@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:VScoutCollector.ViewModels"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI"
+             x:Class="VScoutCollector.Views.QRCodeView"
+             Title="QRCodeView"
+             x:DataType="viewmodels:QRCodeViewModel">
+
+    <zxing:BarcodeGeneratorView HeightRequest="550" WidthRequest="550" Format="QrCode" Value="{Binding QrCodeValue}"/>
+
+</ContentPage>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:VScoutCollector.ViewModels"
+             x:Class="VScoutCollector.Views.ScheduleView"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:dg="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
+             Title="ScheduleView"
+             x:DataType="viewmodels:ScheduleViewModel">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior
+            EventName="Appearing"
+            Command="{Binding AppearingCommand}" />
+    </ContentPage.Behaviors>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Button Text="View QR Code" Clicked="OnViewQrCodeClicked" HorizontalOptions="Center"/>
+        <CollectionView x:Name="RoundsCollectionView" Grid.Row="1" ItemsSource="{Binding Rounds}" SelectionMode="Multiple">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="viewmodels:RoundViewModel">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Text="{Binding MatchNumber}" Margin="5" HeightRequest="50" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                        <Label Grid.Column="1" Text="{Binding Red1TeamNumber}" Margin="5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
+                            <Label.Style>
+                                <Style TargetType="Label">
+                                    <Style.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding Red1TeamNumber.HasData}" Value="false">
+                                            <Setter Property="BackgroundColor" Value="Pink" />
+                                            <Setter Property="TextColor" Value="Black" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Label" Binding="{Binding Red1TeamNumber.HasData}" Value="true">
+                                            <Setter Property="BackgroundColor" Value="Red" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Label.Style>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ScheduleViewModel}}, Path=CellTappedCommand}"
+                                                  CommandParameter="{Binding Red1TeamNumber}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Grid.Column="2" Text="{Binding Red2TeamNumber}" Margin="5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
+                            <Label.Style>
+                                <Style TargetType="Label">
+                                    <Style.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding Red2TeamNumber.HasData}" Value="false">
+                                            <Setter Property="BackgroundColor" Value="Pink" />
+                                            <Setter Property="TextColor" Value="Black" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Label" Binding="{Binding Red2TeamNumber.HasData}" Value="true">
+                                            <Setter Property="BackgroundColor" Value="Red" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Label.Style>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ScheduleViewModel}}, Path=CellTappedCommand}"
+                                                  CommandParameter="{Binding Red2TeamNumber}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Grid.Column="3" Text="{Binding Red3TeamNumber}" Margin="5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
+                            <Label.Style>
+                                <Style TargetType="Label">
+                                    <Style.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding Red3TeamNumber.HasData}" Value="false">
+                                            <Setter Property="BackgroundColor" Value="Pink" />
+                                            <Setter Property="TextColor" Value="Black" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Label" Binding="{Binding Red3TeamNumber.HasData}" Value="true">
+                                            <Setter Property="BackgroundColor" Value="Red" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Label.Style>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ScheduleViewModel}}, Path=CellTappedCommand}"
+                                                  CommandParameter="{Binding Red3TeamNumber}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Grid.Column="4" Text="{Binding Blue1TeamNumber}" Margin="5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
+                            <Label.Style>
+                                <Style TargetType="Label">
+                                    <Style.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding Blue1TeamNumber.HasData}" Value="false">
+                                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                                            <Setter Property="TextColor" Value="Black" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Label" Binding="{Binding Blue1TeamNumber.HasData}" Value="true">
+                                            <Setter Property="BackgroundColor" Value="Blue" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Label.Style>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ScheduleViewModel}}, Path=CellTappedCommand}"
+                                                  CommandParameter="{Binding Blue1TeamNumber}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Grid.Column="5" Text="{Binding Blue2TeamNumber}" Margin="5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
+                            <Label.Style>
+                                <Style TargetType="Label">
+                                    <Style.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding Blue2TeamNumber.HasData}" Value="false">
+                                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                                            <Setter Property="TextColor" Value="Black" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Label" Binding="{Binding Blue2TeamNumber.HasData}" Value="true">
+                                            <Setter Property="BackgroundColor" Value="Blue" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Label.Style>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ScheduleViewModel}}, Path=CellTappedCommand}"
+                                                  CommandParameter="{Binding Blue2TeamNumber}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Grid.Column="6" Text="{Binding Blue3TeamNumber}" Margin="5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
+                            <Label.Style>
+                                <Style TargetType="Label">
+                                    <Style.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding Blue3TeamNumber.HasData}" Value="false">
+                                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                                            <Setter Property="TextColor" Value="Black" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Label" Binding="{Binding Blue3TeamNumber.HasData}" Value="true">
+                                            <Setter Property="BackgroundColor" Value="Blue" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Label.Style>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ScheduleViewModel}}, Path=CellTappedCommand}"
+                                                  CommandParameter="{Binding Blue3TeamNumber}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

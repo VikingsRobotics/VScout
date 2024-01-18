@@ -1,0 +1,10 @@
+Steps to get database off Android:
+1.) Visual Studio: Tools -> Android -> Android Adb Command Prompt
+2.) adb shell
+3.) run-as com.companyname.vscoutmaui
+4.) cat files/MyData.db > /sdcard/MyData.db
+5.) exit
+6.) exit
+7.) adb pull /sdcard/MyData.db
+
+-- It puts the db file next to the project file (of the one that you last selected a file in?)
