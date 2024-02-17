@@ -290,7 +290,7 @@ namespace VScoutCentral.Services
                 OnStageChain = JoeConvert.ToBoolean(row["OnStageChain"]),
                 NoteInOnChain = JoeConvert.ToBoolean(row["NoteInOnChain"]),
                 Spotlight = JoeConvert.ToBoolean(row["Spotlight"]),
-                Notes = JoeConvert.ToString(row["Comments"]),
+                Notes = JoeConvert.ToString(row["Notes"]),
                 HasData = JoeConvert.ToBoolean(row["HasData"])
             };
         }

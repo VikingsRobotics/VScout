@@ -20,16 +20,13 @@ namespace VScoutCentral.Services
 
             foreach (Models.TeamRound teamRound in teamRounds)
             {
-                string notes = teamRound.Notes.Replace('\r', ' ').Replace("\n", " ").Replace(',', ';');
+                string notes = teamRound.Notes.Replace('\r', ' ').Replace('\n', ' ').Replace(',', ';');
 
                 stringBuilder.Append($"{teamRound.TeamNumber},{teamRound.MatchNumber},{teamRound.Rank},{teamRound.Wins},{teamRound.Losses}," +
                    $"{teamRound.Ccwm},{teamRound.Dpr},{teamRound.Opr}," +
-                   $"{teamRound.AutoMoved},{teamRound.AutoDocked},{teamRound.AutoEngaged}," +
-                   $"{teamRound.AutoConeHigh},{teamRound.AutoConeMiddle},{teamRound.AutoConeLow}," +
-                   $"{teamRound.AutoCubeHigh},{teamRound.AutoCubeMiddle},{teamRound.AutoCubeLow}," +
-                   $"{teamRound.Docked},{teamRound.Engaged}," +
-                   $"{teamRound.ConeHigh},{teamRound.ConeMiddle},{teamRound.ConeLow}," +
-                   $"{teamRound.CubeHigh},{teamRound.CubeMiddle},{teamRound.CubeLow}," +
+                   $"{teamRound.AutoMoved},{teamRound.AutoAmp},{teamRound.AutoSpeaker}," +
+                   $"{teamRound.Amp},{teamRound.Speaker},{teamRound.OnStage}," +
+                   $"{teamRound.OnStageChain},{teamRound.NoteInOnChain},{teamRound.Spotlight}," +
                    $"{notes},{teamRound.HasData}\r\n");
             }
 

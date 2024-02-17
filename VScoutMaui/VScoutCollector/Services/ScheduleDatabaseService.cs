@@ -141,6 +141,7 @@ namespace VScoutCollector.Services
             parameters.Add("$Speaker", teamRound.Speaker);
             parameters.Add("$OnStage", teamRound.OnStage);
             parameters.Add("$OnStageChain", teamRound.OnStageChain);
+            parameters.Add("$NoteInOnChain", teamRound.NoteInOnChain);
             parameters.Add("$Spotlight", teamRound.Spotlight);
 
             parameters.Add("$Notes", teamRound.Notes);
@@ -154,6 +155,7 @@ namespace VScoutCollector.Services
                                                   "OnStage = $OnStage, " +
                                                   "OnStageChain = $OnStageChain, " +
                                                   "Spotlight = $Spotlight, " +
+                                                  "NoteInOnChain = $NoteInOnChain, " +
                                                   "Notes = $Notes " +
                                                   "WHERE RoundId = $RoundId AND TeamId = $TeamId;", parameters);
         }
@@ -193,8 +195,7 @@ namespace VScoutCollector.Services
                 OnStageChain = JoeConvert.ToBoolean(row["OnStageChain"]),
                 NoteInOnChain = JoeConvert.ToBoolean(row["NoteInOnChain"]),
                 Spotlight = JoeConvert.ToBoolean(row["Spotlight"]),
-                Notes = JoeConvert.ToString(row["Comments"]),
-                HasData = JoeConvert.ToBoolean(row["HasData"])
+                Notes = JoeConvert.ToString(row["Notes"])
             };
         }
 
