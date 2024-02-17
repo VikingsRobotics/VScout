@@ -8,37 +8,23 @@ public partial class TeamRound
 
     public bool AutoMoved { get; set; }
 
-    public bool AutoDocked { get; set; }
+    public int AutoAmp { get; set; }
 
-    public bool AutoEngaged { get; set; }
+    public int AutoSpeaker { get; set; }
 
-    public int AutoConeHigh { get; set; }
+    public int Amp { get; set; }
 
-    public int AutoConeMiddle { get; set; }
+    public int Speaker { get; set; }
 
-    public int AutoConeLow { get; set; }
+    public bool OnStage { get; set; }
 
-    public int AutoCubeHigh { get; set; }
+    public bool OnStageChain { get; set; }
 
-    public int AutoCubeMiddle { get; set; }
+    public bool NoteInOnChain { get; set; }
 
-    public int AutoCubeLow { get; set; }
-
-    public bool Docked { get; set; }
-
-    public bool Engaged { get; set; }
-
-    public int ConeHigh { get; set; }
-
-    public int ConeMiddle { get; set; }
-
-    public int ConeLow { get; set; }
-
-    public int CubeHigh { get; set; }
-
-    public int CubeMiddle { get; set; }
-
-    public int CubeLow { get; set; }
+    public bool Spotlight { get; set; }
 
     public string Notes { get; set; }
+
+    public bool HasData { get; set; }
 }

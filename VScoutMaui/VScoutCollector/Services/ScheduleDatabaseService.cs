@@ -1,5 +1,6 @@
 ﻿using Joe.Common;
 using Joe.Common.DataAccess;
+using System.Data;
 using VScoutCollector.Models;
 
 namespace VScoutCollector.Services
@@ -33,12 +34,12 @@ namespace VScoutCollector.Services
         {
             using JoeSqliteConnection connection = GetOpenConnection();
 
-            using System.Data.DataTable roundTable = await connection.GetDataTableAsync("SELECT A.* " +
-                                                                                        "FROM Round A; ");
+            using DataTable roundTable = await connection.GetDataTableAsync("SELECT A.* " +
+                                                                            "FROM Round A; ");
 
             List<Round> rounds = new List<Round>(roundTable.Rows.Count);
 
-            foreach (System.Data.DataRow row in roundTable.Rows)
+            foreach (DataRow row in roundTable.Rows)
             {
                 Round round = new Round
                 {
@@ -51,15 +52,14 @@ namespace VScoutCollector.Services
 
                 JoeSqlParameterCollection parameters = new JoeSqlParameterCollection();
                 parameters.Add("$RoundId", round.Id);
-                using System.Data.DataTable teamTable = await connection.GetDataTableAsync("SELECT B.TeamNumber, A.Station, " +
-                                                                                           "CASE coalesce(A.AutonomousMoved, A.AutonomousConeHigh, A.AutonomousConeMiddle, A.AutonomousConeBottom, A.AutonomousCubeHigh, A.AutonomousCubeMiddle, " +
-                                                                                           "A.AutonomousCubeBottom, A.AutonomousDocked, A.AutonomousEngaged, A.ConeHigh, A.ConeMiddle, A.ConeBottom, A.CubeHigh, A.CubeMiddle, " +
-                                                                                           "A.CubeBottom, A.Comments, A.Docked, A.Engaged, A.Parked, 'NN') WHEN 'NN' THEN 0 ELSE 1 END AS 'HasData' " +
-                                                                                           "FROM TeamRound A " +
-                                                                                           "INNER JOIN Team B ON A.TeamId = B.TeamId " +
-                                                                                           "WHERE A.RoundId = $RoundId;", parameters);
+                using DataTable teamTable = await connection.GetDataTableAsync("SELECT B.TeamNumber, A.Station, " +
+                                                                               "CASE coalesce(A.AutoMoved, A.AutoAmp, A.AutoSpeaker, A.Amp, A.Speaker, A.OnStage, " +
+                                                                               "A.OnStageChain, A.NoteInOnChain, A.Spotlight, A.Notes, 'NN') WHEN 'NN' THEN 0 ELSE 1 END AS 'HasData' " +
+                                                                               "FROM TeamRound A " +
+                                                                               "INNER JOIN Team B ON A.TeamId = B.TeamId " +
+                                                                               "WHERE A.RoundId = $RoundId;", parameters);
 
-                foreach (System.Data.DataRow teamRow in teamTable.Rows)
+                foreach (DataRow teamRow in teamTable.Rows)
                 {
                     round.TeamAssignments.Add(new TeamAssignment
                     {
@@ -117,12 +117,12 @@ namespace VScoutCollector.Services
             parameters.Add("$MatchNumber", teamRound.MatchNumber);
             parameters.Add("$TeamNumber", teamRound.TeamNumber);
 
-            using System.Data.DataTable teamAndRoundIdTable = await connection.GetDataTableAsync("SELECT B.TeamId, C.RoundId " +
-                                                                                                 "FROM TeamRound A " +
-                                                                                                 "INNER JOIN Team B ON A.TeamId = B.TeamId " +
-                                                                                                 "INNER JOIN Round C ON A.RoundId = C.RoundId " +
-                                                                                                 "WHERE B.TeamNumber = $TeamNumber AND C.MatchNumber = $MatchNumber;", parameters);
-            System.Data.DataRow teamAndRoundIdRow = teamAndRoundIdTable.Rows[0];
+            using DataTable teamAndRoundIdTable = await connection.GetDataTableAsync("SELECT B.TeamId, C.RoundId " +
+                                                                                     "FROM TeamRound A " +
+                                                                                     "INNER JOIN Team B ON A.TeamId = B.TeamId " +
+                                                                                     "INNER JOIN Round C ON A.RoundId = C.RoundId " +
+                                                                                     "WHERE B.TeamNumber = $TeamNumber AND C.MatchNumber = $MatchNumber;", parameters);
+            DataRow teamAndRoundIdRow = teamAndRoundIdTable.Rows[0];
 
             int roundId = JoeConvert.ToInt32(teamAndRoundIdRow["RoundId"]);
             int teamId = JoeConvert.ToInt32(teamAndRoundIdRow["TeamId"]);
@@ -133,46 +133,28 @@ namespace VScoutCollector.Services
             parameters.Add("$RoundId", roundId);
             parameters.Add("$TeamId", teamId);
 
-            parameters.Add("$AutonomousMoved", teamRound.AutoMoved);
-            parameters.Add("$AutonomousConeHigh", teamRound.AutoConeHigh);
-            parameters.Add("$AutonomousConeMiddle", teamRound.AutoConeMiddle);
-            parameters.Add("$AutonomousConeLow", teamRound.AutoConeLow);
-            parameters.Add("$AutonomousCubeHigh", teamRound.AutoCubeHigh);
-            parameters.Add("$AutonomousCubeMiddle", teamRound.AutoCubeMiddle);
-            parameters.Add("$AutonomousCubeLow", teamRound.AutoCubeLow);
-            parameters.Add("$AutonomousDocked", teamRound.AutoDocked);
-            parameters.Add("$AutonomousEngaged", teamRound.AutoEngaged);
+            parameters.Add("$AutoMoved", teamRound.AutoMoved);
+            parameters.Add("$AutoAmp", teamRound.AutoAmp);
+            parameters.Add("$AutoSpeaker", teamRound.AutoSpeaker);
 
-            parameters.Add("$ConeHigh", teamRound.ConeHigh);
-            parameters.Add("$ConeMiddle", teamRound.ConeMiddle);
-            parameters.Add("$ConeLow", teamRound.ConeLow);
-            parameters.Add("$CubeHigh", teamRound.CubeHigh);
-            parameters.Add("$CubeMiddle", teamRound.CubeMiddle);
-            parameters.Add("$CubeLow", teamRound.CubeLow);
-            parameters.Add("$Docked", teamRound.Docked);
-            parameters.Add("$Engaged", teamRound.Engaged);
+            parameters.Add("$Amp", teamRound.Amp);
+            parameters.Add("$Speaker", teamRound.Speaker);
+            parameters.Add("$OnStage", teamRound.OnStage);
+            parameters.Add("$OnStageChain", teamRound.OnStageChain);
+            parameters.Add("$Spotlight", teamRound.Spotlight);
 
             parameters.Add("$Notes", teamRound.Notes);
 
             await connection.ExecuteNonQueryAsync("UPDATE TeamRound " +
-                                                  "SET AutonomousMoved = $AutonomousMoved, " +
-                                                  "AutonomousConeHigh = $AutonomousConeHigh, " +
-                                                  "AutonomousConeMiddle = $AutonomousConeMiddle, " +
-                                                  "AutonomousConeBottom = $AutonomousConeLow, " +
-                                                  "AutonomousCubeHigh = $AutonomousCubeHigh, " +
-                                                  "AutonomousCubeMiddle = $AutonomousCubeMiddle, " +
-                                                  "AutonomousCubeBottom = $AutonomousCubeLow, " +
-                                                  "AutonomousDocked = $AutonomousDocked, " +
-                                                  "AutonomousEngaged = $AutonomousEngaged, " +
-                                                  "ConeHigh = $ConeHigh, " +
-                                                  "ConeMiddle = $ConeMiddle, " +
-                                                  "ConeBottom = $ConeLow, " +
-                                                  "CubeHigh = $CubeHigh, " +
-                                                  "CubeMiddle = $CubeMiddle, " +
-                                                  "CubeBottom = $CubeLow, " +
-                                                  "Docked = $Docked, " +
-                                                  "Engaged = $Engaged, " +
-                                                  "Comments = $Notes " +
+                                                  "SET AutoMoved = $AutoMoved, " +
+                                                  "AutoAmp = $AutoAmp, " +
+                                                  "AutoSpeaker = $AutoSpeaker, " +
+                                                  "Amp = $Amp, " +
+                                                  "Speaker = $Speaker, " +
+                                                  "OnStage = $OnStage, " +
+                                                  "OnStageChain = $OnStageChain, " +
+                                                  "Spotlight = $Spotlight, " +
+                                                  "Notes = $Notes " +
                                                   "WHERE RoundId = $RoundId AND TeamId = $TeamId;", parameters);
         }
 
@@ -185,36 +167,34 @@ namespace VScoutCollector.Services
             parameters.Add("$MatchNumber", matchNumber);
             parameters.Add("$TeamNumber", teamNumber);
 
-            using System.Data.DataTable roundTable = await connection.GetDataTableAsync("SELECT A.*, B.MatchNumber, C.TeamNumber " +
-                                                                                        "FROM TeamRound A " +
-                                                                                        "INNER JOIN Round B ON A.RoundId = B.RoundId " +
-                                                                                        "INNER JOIN Team C On A.TeamId = C.TeamId " +
-                                                                                        "WHERE B.MatchNumber = $MatchNumber AND C.TeamNumber = $TeamNumber; ", parameters);
+            using DataTable roundTable = await connection.GetDataTableAsync("SELECT A.*, B.MatchNumber, C.TeamNumber " +
+                                                                            "FROM TeamRound A " +
+                                                                            "INNER JOIN Round B ON A.RoundId = B.RoundId " +
+                                                                            "INNER JOIN Team C On A.TeamId = C.TeamId " +
+                                                                            "WHERE B.MatchNumber = $MatchNumber AND C.TeamNumber = $TeamNumber; ", parameters);
 
-            System.Data.DataRow row = roundTable.Rows[0];
+            DataRow row = roundTable.Rows[0];
 
+            return ConvertDataRowToTeamRound(row);
+        }
+
+        private static TeamRound ConvertDataRowToTeamRound(DataRow row)
+        {
             return new TeamRound
             {
                 TeamNumber = JoeConvert.ToInt32(row["TeamNumber"]),
                 MatchNumber = JoeConvert.ToInt32(row["MatchNumber"]),
-                AutoMoved = JoeConvert.ToBoolean(row["AutonomousMoved"]),
-                AutoDocked = JoeConvert.ToBoolean(row["AutonomousDocked"]),
-                AutoEngaged = JoeConvert.ToBoolean(row["AutonomousEngaged"]),
-                AutoConeHigh = JoeConvert.ToInt32(row["AutonomousConeHigh"]),
-                AutoConeMiddle = JoeConvert.ToInt32(row["AutonomousConeMiddle"]),
-                AutoConeLow = JoeConvert.ToInt32(row["AutonomousConeBottom"]),
-                AutoCubeHigh = JoeConvert.ToInt32(row["AutonomousCubeHigh"]),
-                AutoCubeMiddle = JoeConvert.ToInt32(row["AutonomousCubeMiddle"]),
-                AutoCubeLow = JoeConvert.ToInt32(row["AutonomousCubeBottom"]),
-                ConeHigh = JoeConvert.ToInt32(row["ConeHigh"]),
-                ConeMiddle = JoeConvert.ToInt32(row["ConeMiddle"]),
-                ConeLow = JoeConvert.ToInt32(row["ConeBottom"]),
-                CubeHigh = JoeConvert.ToInt32(row["CubeHigh"]),
-                CubeMiddle = JoeConvert.ToInt32(row["CubeMiddle"]),
-                CubeLow = JoeConvert.ToInt32(row["CubeBottom"]),
-                Docked = JoeConvert.ToBoolean(row["Docked"]),
-                Engaged = JoeConvert.ToBoolean(row["Engaged"]),
-                Notes = JoeConvert.ToString(row["Comments"])
+                AutoMoved = JoeConvert.ToBoolean(row["AutoMoved"]),
+                AutoAmp = JoeConvert.ToInt32(row["AutoAmp"]),
+                AutoSpeaker = JoeConvert.ToInt32(row["AutoSpeaker"]),
+                Amp = JoeConvert.ToInt32(row["Amp"]),
+                Speaker = JoeConvert.ToInt32(row["Speaker"]),
+                OnStage = JoeConvert.ToBoolean(row["OnStage"]),
+                OnStageChain = JoeConvert.ToBoolean(row["OnStageChain"]),
+                NoteInOnChain = JoeConvert.ToBoolean(row["NoteInOnChain"]),
+                Spotlight = JoeConvert.ToBoolean(row["Spotlight"]),
+                Notes = JoeConvert.ToString(row["Comments"]),
+                HasData = JoeConvert.ToBoolean(row["HasData"])
             };
         }
 

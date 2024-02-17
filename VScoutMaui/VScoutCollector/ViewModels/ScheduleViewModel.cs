@@ -137,13 +137,11 @@ namespace VScoutCollector.ViewModels
 
         private static string SerializeTeamRound(TeamRound teamRound)
         {
-            return $"{teamRound.MatchNumber}*{teamRound.TeamNumber}*{teamRound.AutoMoved}*{teamRound.AutoDocked}*{teamRound.AutoEngaged}*" +
-                   $"{teamRound.AutoConeHigh}*{teamRound.AutoConeMiddle}*{teamRound.AutoConeLow}*" +
-                   $"{teamRound.AutoCubeHigh}*{teamRound.AutoCubeMiddle}*{teamRound.AutoCubeLow}*" +
-                   $"{teamRound.Docked}*{teamRound.Engaged}*" +
-                   $"{teamRound.ConeHigh}*{teamRound.ConeMiddle}*{teamRound.ConeLow}*" +
-                   $"{teamRound.CubeHigh}*{teamRound.CubeMiddle}*{teamRound.CubeLow}*" +
-                   $"{teamRound.Notes}";
+            return $"{teamRound.MatchNumber}*{teamRound.TeamNumber}*" +
+                   $"{teamRound.AutoMoved}*{teamRound.AutoAmp}*{teamRound.AutoSpeaker}*" +
+                   $"{teamRound.Amp}*{teamRound.Speaker}*" +
+                   $"{teamRound.OnStage}*{teamRound.OnStageChain}*{teamRound.NoteInOnChain}*{teamRound.Spotlight}*" +
+                   $"{teamRound.Notes}*";
         }
     }
 }
