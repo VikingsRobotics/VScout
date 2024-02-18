@@ -11,12 +11,8 @@
         <Label Text="{Binding Station, StringFormat='Station: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
         <Label Text="{Binding Rank, StringFormat='Rank: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
         <Label Text="{Binding RoundsPlayed, StringFormat='Rounds Played: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
-        <Label Text="{Binding AverageHighCones, StringFormat='Avg High Cones: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
-        <Label Text="{Binding AverageMiddleCones, StringFormat='Avg Mid Cones: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
-        <Label Text="{Binding AverageLowCones, StringFormat='Avg Low Cones: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
-        <Label Text="{Binding AverageHighCubes, StringFormat='Avg High Cubes: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
-        <Label Text="{Binding AverageMiddleCubes, StringFormat='Avg Mid Cubes: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
-        <Label Text="{Binding AverageLowCubes, StringFormat='Avg Low Cubes: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Label Text="{Binding AverageAmp, StringFormat='Avg High Cones: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Label Text="{Binding AverageSpeaker, StringFormat='Avg Mid Cones: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" />
         <Label Text="{Binding Comments, StringFormat='Comments: {0}'}" VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="WordWrap" />
     </VerticalStackLayout>
 </ContentView>

@@ -24,23 +24,14 @@ CREATE TABLE TeamRound (
 	TeamId integer,
 	RoundId integer,
 	Station varchar,
-	AutonomousMoved integer, -- boolean
-	AutonomousConeHigh integer,
-	AutonomousConeMiddle integer,
-	AutonomousConeBottom integer,
-	AutonomousCubeHigh integer,
-	AutonomousCubeMiddle integer,
-	AutonomousCubeBottom integer,
-	AutonomousDocked integer, -- boolean
-	AutonomousEngaged integer, -- boolean
-	ConeHigh integer,
-	ConeMiddle integer,
-	ConeBottom integer,
-	CubeHigh integer,
-	CubeMiddle integer,
-	CubeBottom integer,
-	Comments varchar,
-	Docked integer,
-	Engaged integer,
-	Parked integer
+	AutoMoved integer, -- boolean
+	AutoAmp integer,
+	AutoSpeaker integer,
+	Amp integer,
+	Speaker integer,
+	OnStage integer, -- boolean
+	OnStageChain integer, -- boolean
+	NoteInOnChain integer, -- boolean
+	Spotlight integer, -- boolean
+	Notes varchar
 );

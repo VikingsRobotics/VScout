@@ -20,23 +20,16 @@ namespace VScoutCollector.ViewModels
         {
             Models.TeamRound teamRound = await _scheduleDatabaseService.GetTeamRoundAsync(MatchNumber, TeamNumber);
             AutoMoved = teamRound.AutoMoved;
-            AutoDocked = teamRound.AutoDocked;
-            AutoEngaged = teamRound.AutoEngaged;
-            AutoConeHigh = teamRound.AutoConeHigh;
-            AutoConeMiddle = teamRound.AutoConeMiddle;
-            AutoConeLow = teamRound.AutoConeLow;
-            AutoCubeHigh = teamRound.AutoCubeHigh;
-            AutoCubeMiddle = teamRound.AutoCubeMiddle;
-            AutoCubeLow = teamRound.AutoCubeLow;
+            AutoAmp = teamRound.AutoAmp;
+            AutoSpeaker = teamRound.AutoSpeaker;
+            
+            Amp = teamRound.Amp;
+            Speaker = teamRound.Speaker;
 
-            ConeHigh = teamRound.ConeHigh;
-            ConeMiddle = teamRound.ConeMiddle;
-            ConeLow = teamRound.ConeLow;
-            CubeHigh = teamRound.CubeHigh;
-            CubeMiddle = teamRound.CubeMiddle;
-            CubeLow = teamRound.CubeLow;
-            Docked = teamRound.Docked;
-            Engaged = teamRound.Engaged;
+            OnStage = teamRound.OnStage;
+            OnStageChain = teamRound.OnStageChain;
+            NoteInOnChain = teamRound.NoteInOnChain;
+            Spotlight = teamRound.Spotlight;
 
             Notes = teamRound.Notes;
         }
@@ -51,198 +44,78 @@ namespace VScoutCollector.ViewModels
         private bool _autoMoved;
 
         [ObservableProperty]
-        private bool _autoDocked;
+        private int _autoAmp;
 
         [ObservableProperty]
-        private bool _autoEngaged;
+        private int _autoSpeaker;
 
         [ObservableProperty]
-        private int _autoConeHigh;
+        private int _amp;
 
         [ObservableProperty]
-        private int _autoConeMiddle;
+        private int _speaker;
 
         [ObservableProperty]
-        private int _autoConeLow;
+        private bool _onStage;
 
         [ObservableProperty]
-        private int _autoCubeHigh;
+        private bool _onStageChain;
 
         [ObservableProperty]
-        private int _autoCubeMiddle;
+        private bool _noteInOnChain;
 
         [ObservableProperty]
-        private int _autoCubeLow;
-
-        [ObservableProperty]
-        private bool _docked;
-
-        [ObservableProperty]
-        private bool _engaged;
-
-        [ObservableProperty]
-        private int _coneHigh;
-
-        [ObservableProperty]
-        private int _coneMiddle;
-
-        [ObservableProperty]
-        private int _coneLow;
-
-        [ObservableProperty]
-        private int _cubeHigh;
-
-        [ObservableProperty]
-        private int _cubeMiddle;
-
-        [ObservableProperty]
-        private int _cubeLow;
+        private bool _spotlight;
 
         [ObservableProperty]
         private string _notes;
 
         [RelayCommand]
-        private void AutoIncrementConeHigh()
+        private void AutoIncrementAmp()
         {
-            AutoConeHigh++;
+            AutoAmp++;
         }
 
         [RelayCommand]
-        private void AutoDecrementConeHigh()
+        private void AutoDecrementAmp()
         {
-            AutoConeHigh--;
+            AutoAmp--;
         }
 
         [RelayCommand]
-        private void AutoIncrementConeMiddle()
+        private void AutoIncrementSpeaker()
         {
-            AutoConeMiddle++;
+            AutoSpeaker++;
         }
 
         [RelayCommand]
-        private void AutoDecrementConeMiddle()
+        private void AutoDecrementSpeaker()
         {
-            AutoConeMiddle--;
+            AutoSpeaker--;
         }
 
         [RelayCommand]
-        private void AutoIncrementConeLow()
+        private void IncrementAmp()
         {
-            AutoConeLow++;
+            Amp++;
         }
 
         [RelayCommand]
-        private void AutoDecrementConeLow()
+        private void DecrementAmp()
         {
-            AutoConeLow--;
+            Amp--;
         }
 
         [RelayCommand]
-        private void AutoIncrementCubeHigh()
+        private void IncrementSpeaker()
         {
-            AutoCubeHigh++;
+            Speaker++;
         }
 
         [RelayCommand]
-        private void AutoDecrementCubeHigh()
+        private void DecrementSpeaker()
         {
-            AutoCubeHigh--;
-        }
-
-        [RelayCommand]
-        private void AutoIncrementCubeMiddle()
-        {
-            AutoCubeMiddle++;
-        }
-
-        [RelayCommand]
-        private void AutoDecrementCubeMiddle()
-        {
-            AutoCubeMiddle--;
-        }
-
-        [RelayCommand]
-        private void AutoIncrementCubeLow()
-        {
-            AutoCubeLow++;
-        }
-
-        [RelayCommand]
-        private void AutoDecrementCubeLow()
-        {
-            AutoCubeLow--;
-        }
-
-        [RelayCommand]
-        private void IncrementConeHigh()
-        {
-            ConeHigh++;
-        }
-
-        [RelayCommand]
-        private void DecrementConeHigh()
-        {
-            ConeHigh--;
-        }
-
-        [RelayCommand]
-        private void IncrementConeMiddle()
-        {
-            ConeMiddle++;
-        }
-
-        [RelayCommand]
-        private void DecrementConeMiddle()
-        {
-            ConeMiddle--;
-        }
-
-        [RelayCommand]
-        private void IncrementConeLow()
-        {
-            ConeLow++;
-        }
-
-        [RelayCommand]
-        private void DecrementConeLow()
-        {
-            ConeLow--;
-        }
-
-        [RelayCommand]
-        private void IncrementCubeHigh()
-        {
-            CubeHigh++;
-        }
-
-        [RelayCommand]
-        private void DecrementCubeHigh()
-        {
-            CubeHigh--;
-        }
-
-        [RelayCommand]
-        private void IncrementCubeMiddle()
-        {
-            CubeMiddle++;
-        }
-
-        [RelayCommand]
-        private void DecrementCubeMiddle()
-        {
-            CubeMiddle--;
-        }
-
-        [RelayCommand]
-        private void IncrementCubeLow()
-        {
-            CubeLow++;
-        }
-
-        [RelayCommand]
-        private void DecrementCubeLow()
-        {
-            CubeLow--;
+            Speaker--;
         }
 
         [RelayCommand]
@@ -253,22 +126,14 @@ namespace VScoutCollector.ViewModels
                 MatchNumber = MatchNumber,
                 TeamNumber = TeamNumber,
                 AutoMoved = AutoMoved,
-                AutoConeHigh = AutoConeHigh,
-                AutoConeMiddle = AutoConeMiddle,
-                AutoConeLow = AutoConeLow,
-                AutoCubeHigh = AutoCubeHigh,
-                AutoCubeMiddle = AutoCubeMiddle,
-                AutoCubeLow = AutoCubeLow,
-                AutoDocked = AutoDocked,
-                AutoEngaged = AutoEngaged,
-                ConeHigh = ConeHigh,
-                ConeMiddle = ConeMiddle,
-                ConeLow = ConeLow,
-                CubeHigh = CubeHigh,
-                CubeMiddle = CubeMiddle,
-                CubeLow = CubeLow,
-                Docked = Docked,
-                Engaged = Engaged,
+                AutoAmp = AutoAmp,
+                AutoSpeaker = AutoSpeaker,
+                Amp = Amp,
+                Speaker = Speaker,
+                OnStage = OnStage,
+                OnStageChain = OnStageChain,
+                NoteInOnChain = NoteInOnChain,
+                Spotlight = Spotlight,
                 Notes = Notes
             });
 
