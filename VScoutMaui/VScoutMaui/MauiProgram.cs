@@ -48,14 +48,14 @@ public static class MauiProgram
         // Clients
         builder.Services.AddFrcClient(options =>
         {
-            options.Year = 2023;
+            options.Year = 2024;
             options.EventCode = "MNDU2";
 
         });
 
         builder.Services.AddBlueAllianceClient(options =>
         {
-            options.Year = 2023;
+            options.Year = 2024;
             options.EventCode = "MNDU2";
         });
 
