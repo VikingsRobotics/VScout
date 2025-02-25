@@ -17,22 +17,10 @@ namespace VScoutCentral.ViewModels
         private int _roundsPlayed;
 
         [ObservableProperty]
-        private decimal _averageHighCones;
+        private decimal _averageAmp;
 
         [ObservableProperty]
-        private decimal _averageMiddleCones;
-
-        [ObservableProperty]
-        private decimal _averageLowCones;
-
-        [ObservableProperty]
-        private decimal _averageHighCubes;
-
-        [ObservableProperty]
-        private decimal _averageMiddleCubes;
-
-        [ObservableProperty]
-        private decimal _averageLowCubes;
+        private decimal _averageSpeaker;
 
         [ObservableProperty]
         private string _comments;

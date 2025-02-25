@@ -23,89 +23,39 @@
             <HorizontalStackLayout>
                 <Label Text="Match Number: " FontSize="20"/>
                 <Label Text="{Binding MatchNumber}" FontAttributes="Bold" FontSize="20"/>
-                <Button Text="Save" Command="{Binding SaveCommand}" Margin="300,0,0,0"/>
+                <Button Text="Save" Command="{Binding SaveCommand}" Margin="30,0,0,0"/>
             </HorizontalStackLayout>
 
             <Label Text="Autonomous" Margin="10,15,5,5"/>
             <Border StrokeThickness="2" Stroke="{StaticResource Gray600}" Margin="5,0,5,5" Padding="10,0,10,10" >
                 <VerticalStackLayout >
-                    <HorizontalStackLayout HorizontalOptions="Center">
+                    <HorizontalStackLayout HorizontalOptions="Start">
                         <CheckBox IsChecked="{Binding AutoMoved}" />
                         <Label Text="Moved" VerticalOptions="Center" />
-
-                        <CheckBox IsChecked="{Binding AutoDocked}" Margin="15,0,0,0" />
-                        <Label Text="Docked (On Ramp)"  VerticalOptions="Center" />
-
-                        <CheckBox IsChecked="{Binding AutoEngaged}" Margin="15,0,0,0" />
-                        <Label Text="Engaged (Balanced)"  VerticalOptions="Center" />
                     </HorizontalStackLayout>
-                    <HorizontalStackLayout HorizontalOptions="Center">
+                    <HorizontalStackLayout HorizontalOptions="FillAndExpand">
                         <Border Stroke="{StaticResource Gray400}">
                             <VerticalStackLayout>
-                                <Label Text="Cone" Margin="5" FontAttributes="Bold" FontSize="20" />
+                                <Label Text="Amp" Margin="5" FontAttributes="Bold" FontSize="20" />
 
-                                <Grid RowSpacing="3" Margin="5,0,0,5">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50" />
-                                        <ColumnDefinition Width="65" />
-                                        <ColumnDefinition Width="65" />
-                                        <ColumnDefinition Width="45" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="45" />
-                                        <RowDefinition Height="45" />
-                                        <RowDefinition Height="45" />
-                                    </Grid.RowDefinitions>
+                                <HorizontalStackLayout>
+                                    <Button Text="-" Command="{Binding AutoDecrementAmpCommand}" Margin="10" HeightRequest="75" WidthRequest="75" FontSize="30" />
+                                    <Button Text="+" Command="{Binding AutoIncrementAmpCommand}" Margin="10" HeightRequest="75" WidthRequest="75" FontSize="30" />
+                                </HorizontalStackLayout>
 
-                                    <Label Text="High" VerticalOptions="Center" />
-                                    <Button Grid.Column="1" Text="-" Command="{Binding AutoDecrementConeHighCommand}" />
-                                    <Button Grid.Column="2" Text="+" Command="{Binding AutoIncrementConeHighCommand}" Margin="2,0,0,0" />
-                                    <Label Grid.Column="3" Text="{Binding AutoConeHigh}" VerticalOptions="Center" HorizontalOptions="Center" />
-
-                                    <Label Grid.Row="1" Text="Middle" VerticalOptions="Center" />
-                                    <Button Grid.Row="1" Grid.Column="1" Text="-" Command="{Binding AutoDecrementConeMiddleCommand}" />
-                                    <Button Grid.Row="1" Grid.Column="2" Text="+" Command="{Binding AutoIncrementConeMiddleCommand}" Margin="2,0,0,0" />
-                                    <Label Grid.Row="1" Grid.Column="3" Text="{Binding AutoConeMiddle}" VerticalOptions="Center" HorizontalOptions="Center" />
-
-                                    <Label Grid.Row="2" Text="Low" VerticalOptions="Center" />
-                                    <Button Grid.Row="2" Grid.Column="1" Text="-" Command="{Binding AutoDecrementConeLowCommand}" />
-                                    <Button Grid.Row="2" Grid.Column="2" Text="+" Command="{Binding AutoIncrementConeLowCommand}" Margin="2,0,0,0" />
-                                    <Label Grid.Row="2" Grid.Column="3" Text="{Binding AutoConeLow}" VerticalOptions="Center" HorizontalOptions="Center" />
-                                </Grid>
+                                <Label Text="{Binding AutoAmp}" HorizontalOptions="CenterAndExpand" FontSize="20" Margin="5"/>
                             </VerticalStackLayout>
                         </Border>
                         <Border Stroke="{StaticResource Gray400}" Margin="5,0,0,0">
                             <VerticalStackLayout>
-                                <Label Text="Cube" Margin="5" FontAttributes="Bold" FontSize="20" />
+                                <Label Text="Speaker" Margin="5" FontAttributes="Bold" FontSize="20" />
 
-                                <Grid RowSpacing="3" Margin="5,0,0,5">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50" />
-                                        <ColumnDefinition Width="65" />
-                                        <ColumnDefinition Width="65" />
-                                        <ColumnDefinition Width="45" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="45" />
-                                        <RowDefinition Height="45" />
-                                        <RowDefinition Height="45" />
-                                    </Grid.RowDefinitions>
+                                <HorizontalStackLayout>
+                                    <Button Text="-" Command="{Binding AutoDecrementSpeakerCommand}" Margin="10" HeightRequest="75" WidthRequest="75" FontSize="30" />
+                                    <Button Text="+" Command="{Binding AutoIncrementSpeakerCommand}" Margin="10" HeightRequest="75" WidthRequest="75" FontSize="30" />
+                                </HorizontalStackLayout>
 
-                                    <Label Text="High" VerticalOptions="Center" />
-                                    <Button Grid.Column="1" Text="-" Command="{Binding AutoDecrementCubeHighCommand}" />
-                                    <Button Grid.Column="2" Text="+" Command="{Binding AutoIncrementCubeHighCommand}" Margin="2,0,0,0"/>
-                                    <Label Grid.Column="3" Text="{Binding AutoCubeHigh}" VerticalOptions="Center" HorizontalOptions="Center" />
-
-                                    <Label Grid.Row="1" Text="Middle" VerticalOptions="Center" />
-                                    <Button Grid.Row="1" Grid.Column="1" Text="-" Command="{Binding AutoDecrementCubeMiddleCommand}" />
-                                    <Button Grid.Row="1" Grid.Column="2" Text="+" Command="{Binding AutoIncrementCubeMiddleCommand}" Margin="2,0,0,0" />
-                                    <Label Grid.Row="1" Grid.Column="3" Text="{Binding AutoCubeMiddle}" VerticalOptions="Center" HorizontalOptions="Center" />
-
-                                    <Label Grid.Row="2" Text="Low" VerticalOptions="Center" />
-                                    <Button Grid.Row="2" Grid.Column="1" Text="-" Command="{Binding AutoDecrementCubeLowCommand}" />
-                                    <Button Grid.Row="2" Grid.Column="2" Text="+" Command="{Binding AutoIncrementCubeLowCommand}" Margin="2,0,0,0"/>
-                                    <Label Grid.Row="2" Grid.Column="3" Text="{Binding AutoCubeLow}" VerticalOptions="Center" HorizontalOptions="Center" />
-                                </Grid>
+                                <Label Text="{Binding AutoSpeaker}" HorizontalOptions="CenterAndExpand" FontSize="20" Margin="5" />
                             </VerticalStackLayout>
                         </Border>
                     </HorizontalStackLayout>
@@ -114,85 +64,52 @@
 
             <Label Text="TeleOp" Margin="10,15,5,5"/>
             <Border StrokeThickness="2" Stroke="{StaticResource Gray600}" Margin="5,0,5,5" Padding="10,0,10,10" >
-                <VerticalStackLayout >
-                    <HorizontalStackLayout HorizontalOptions="Start">
-                        <CheckBox IsChecked="{Binding Docked}" Margin="15,0,0,0" />
-                        <Label Text="Docked (On Ramp)"  VerticalOptions="Center" />
-
-                        <CheckBox IsChecked="{Binding Engaged}" Margin="15,0,0,0" />
-                        <Label Text="Engaged (Balanced)"  VerticalOptions="Center" />
-                    </HorizontalStackLayout>
-                    <HorizontalStackLayout HorizontalOptions="Center">
+                <HorizontalStackLayout>
+                    <VerticalStackLayout>
+                        <HorizontalStackLayout>
+                            <CheckBox IsChecked="{Binding OnStage}" />
+                            <Label Text="On Stage" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout>
+                            <CheckBox IsChecked="{Binding OnStageChain}" />
+                            <Label Text="On Stage (Chain)"  VerticalOptions="Center" />
+                        </HorizontalStackLayout>
                         <Border Stroke="{StaticResource Gray400}">
                             <VerticalStackLayout>
-                                <Label Text="Cone" Margin="5" FontAttributes="Bold" FontSize="20" />
+                                <Label Text="Amp" Margin="5" FontAttributes="Bold" FontSize="20" />
 
-                                <Grid RowSpacing="3" Margin="5,0,0,5">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50" />
-                                        <ColumnDefinition Width="65" />
-                                        <ColumnDefinition Width="65" />
-                                        <ColumnDefinition Width="45" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="45" />
-                                        <RowDefinition Height="45" />
-                                        <RowDefinition Height="45" />
-                                    </Grid.RowDefinitions>
+                                <HorizontalStackLayout>
+                                    <Button Text="-" Command="{Binding DecrementAmpCommand}" Margin="10" HeightRequest="75" WidthRequest="75" FontSize="30" />
+                                    <Button Text="+" Command="{Binding IncrementAmpCommand}" Margin="10" HeightRequest="75" WidthRequest="75" FontSize="30" />
+                                </HorizontalStackLayout>
 
-                                    <Label Text="High" VerticalOptions="Center" />
-                                    <Button Grid.Column="1" Text="-" Command="{Binding DecrementConeHighCommand}" />
-                                    <Button Grid.Column="2" Text="+" Command="{Binding IncrementConeHighCommand}" Margin="2,0,0,0" />
-                                    <Label Grid.Column="3" Text="{Binding ConeHigh}" VerticalOptions="Center" HorizontalOptions="Center" />
-
-                                    <Label Grid.Row="1" Text="Middle" VerticalOptions="Center" />
-                                    <Button Grid.Row="1" Grid.Column="1" Text="-" Command="{Binding DecrementConeMiddleCommand}" />
-                                    <Button Grid.Row="1" Grid.Column="2" Text="+" Command="{Binding IncrementConeMiddleCommand}" Margin="2,0,0,0" />
-                                    <Label Grid.Row="1" Grid.Column="3" Text="{Binding ConeMiddle}" VerticalOptions="Center" HorizontalOptions="Center" />
-
-                                    <Label Grid.Row="2" Text="Low" VerticalOptions="Center" />
-                                    <Button Grid.Row="2" Grid.Column="1" Text="-" Command="{Binding DecrementConeLowCommand}" />
-                                    <Button Grid.Row="2" Grid.Column="2" Text="+" Command="{Binding IncrementConeLowCommand}" Margin="2,0,0,0" />
-                                    <Label Grid.Row="2" Grid.Column="3" Text="{Binding ConeLow}" VerticalOptions="Center" HorizontalOptions="Center" />
-                                </Grid>
+                                <Label Text="{Binding Amp}" HorizontalOptions="CenterAndExpand" FontSize="20" />
                             </VerticalStackLayout>
                         </Border>
-                        <Border Stroke="{StaticResource Gray400}" Margin="5,0,0,0">
+                    </VerticalStackLayout>
+                    <VerticalStackLayout>
+                        <HorizontalStackLayout>
+                            <CheckBox IsChecked="{Binding NoteInOnChain}" />
+                            <Label Text="Note in on chain" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout>
+                            <CheckBox IsChecked="{Binding Spotlight}" />
+                            <Label Text="Spotlight" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <Border Stroke="{StaticResource Gray400}">
                             <VerticalStackLayout>
-                                <Label Text="Cube" Margin="5" FontAttributes="Bold" FontSize="20" />
+                                <Label Text="Speaker" Margin="5" FontAttributes="Bold" FontSize="20" />
 
-                                <Grid RowSpacing="3" Margin="5,0,0,5">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50" />
-                                        <ColumnDefinition Width="65" />
-                                        <ColumnDefinition Width="65" />
-                                        <ColumnDefinition Width="45" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="45" />
-                                        <RowDefinition Height="45" />
-                                        <RowDefinition Height="45" />
-                                    </Grid.RowDefinitions>
+                                <HorizontalStackLayout>
+                                    <Button Text="-" Command="{Binding DecrementSpeakerCommand}" Margin="10" HeightRequest="75" WidthRequest="75" FontSize="30" />
+                                    <Button Text="+" Command="{Binding IncrementSpeakerCommand}" Margin="10" HeightRequest="75" WidthRequest="75" FontSize="30" />
+                                </HorizontalStackLayout>
 
-                                    <Label Text="High" VerticalOptions="Center" />
-                                    <Button Grid.Column="1" Text="-" Command="{Binding DecrementCubeHighCommand}" />
-                                    <Button Grid.Column="2" Text="+" Command="{Binding IncrementCubeHighCommand}" Margin="2,0,0,0"/>
-                                    <Label Grid.Column="3" Text="{Binding CubeHigh}" VerticalOptions="Center" HorizontalOptions="Center" />
-
-                                    <Label Grid.Row="1" Text="Middle" VerticalOptions="Center" />
-                                    <Button Grid.Row="1" Grid.Column="1" Text="-" Command="{Binding DecrementCubeMiddleCommand}" />
-                                    <Button Grid.Row="1" Grid.Column="2" Text="+" Command="{Binding IncrementCubeMiddleCommand}" Margin="2,0,0,0" />
-                                    <Label Grid.Row="1" Grid.Column="3" Text="{Binding CubeMiddle}" VerticalOptions="Center" HorizontalOptions="Center" />
-
-                                    <Label Grid.Row="2" Text="Low" VerticalOptions="Center" />
-                                    <Button Grid.Row="2" Grid.Column="1" Text="-" Command="{Binding DecrementCubeLowCommand}" />
-                                    <Button Grid.Row="2" Grid.Column="2" Text="+" Command="{Binding IncrementCubeLowCommand}" Margin="2,0,0,0"/>
-                                    <Label Grid.Row="2" Grid.Column="3" Text="{Binding CubeLow}" VerticalOptions="Center" HorizontalOptions="Center" />
-                                </Grid>
+                                <Label Text="{Binding Speaker}" HorizontalOptions="CenterAndExpand" FontSize="20" />
                             </VerticalStackLayout>
                         </Border>
-                    </HorizontalStackLayout>
-                </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
             </Border>
 
             <Label Text="Notes" Margin="10,15,5,5" />

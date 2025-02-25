@@ -58,12 +58,8 @@ namespace VScoutCentral.ViewModels
 
             decimal divisor = Math.Max(roundsPlayed, 1);
 
-            decimal averageHighCones = teamRounds.Sum(r => r.AutoConeHigh + r.ConeHigh) / divisor;
-            decimal averageMiddleCones = teamRounds.Sum(r => r.AutoConeMiddle + r.ConeMiddle) / divisor;
-            decimal averageLowCones = teamRounds.Sum(r => r.AutoConeLow + r.ConeLow) / divisor;
-            decimal averageHighCubes = teamRounds.Sum(r => r.AutoCubeHigh + r.CubeHigh) / divisor;
-            decimal averageMiddleCubes = teamRounds.Sum(r => r.AutoCubeMiddle + r.CubeMiddle) / divisor;
-            decimal averageLowCubes = teamRounds.Sum(r => r.AutoCubeLow + r.CubeLow) / divisor;
+            decimal averageAmp = teamRounds.Sum(r => r.AutoAmp + r.Amp) / divisor;
+            decimal averageSpeaker = teamRounds.Sum(r => r.AutoSpeaker + r.Speaker) / divisor;
             string comments = string.Join(Environment.NewLine, teamRounds.Select(r => r.Notes).Reverse());
             int teamNumber = teamRounds[0].TeamNumber;
             int rank = teamRounds[0].Rank;
@@ -74,12 +70,8 @@ namespace VScoutCentral.ViewModels
                 RoundsPlayed = roundsPlayed,
                 Rank = rank,
                 Station = station,
-                AverageHighCones = averageHighCones,
-                AverageMiddleCones = averageMiddleCones,
-                AverageLowCones = averageLowCones,
-                AverageHighCubes = averageHighCubes,
-                AverageMiddleCubes = averageMiddleCubes,
-                AverageLowCubes = averageLowCubes,
+                AverageAmp = averageAmp,
+                AverageSpeaker = averageSpeaker,
                 Comments = comments
             };
         }
